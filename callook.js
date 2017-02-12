@@ -18,19 +18,22 @@ var req = https.get(options, function(res) {
     });
 
     res.on('end', function(){
-        var getResponse = JSON.parse(body);
-		//console.log("Response body: ", getResponse);
-		console.log("status: ", getResponse.status);
-        console.log("current.operClass: ", getResponse.current.operClass);
-		console.log("name: ", getResponse.name);
-		console.log("address line 2: ", getResponse.address.line2);
-		console.log("otherInfo.expiryDate: ", getResponse.otherInfo.expiryDate);
+			try {
+				var getResponse = JSON.parse(body);
+				//console.log("Response body: ", getResponse);
+				console.log("status: ", getResponse.status);
+				console.log("current.operClass: ", getResponse.current.operClass);
+				console.log("name: ", getResponse.name);
+				console.log("address line 2: ", getResponse.address.line2);
+				console.log("otherInfo.expiryDate: ", getResponse.otherInfo.expiryDate);
+				}
+			catch (e) {
+					console.log('Error parsing JSON!');
+				}
     });
 });
 req.end(); req.on('error', function(e) {
   console.error(e);
 });
-
-
 
 
