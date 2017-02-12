@@ -4,16 +4,32 @@ var https = require('https'); var options = {
   path: '/kd8psj/json',
   method: 'GET'
 };
-var req = https.request(options, function(res) {
-  //console.log("statusCode: ", res.statusCode);
-  //console.log("headers: ", res.headers);
-  res.on('data', function(d) {
-    process.stdout.write(d);
-  });
+
+var req = https.get(options, function(res) {
+
+
+    var body = '';
+
+    res.on('data', function(chunk){
+        body += chunk;
+    });
+
+    res.on('end', function(){
+        var fbResponse = JSON.parse(body);
+		//console.log("Got a response: ", fbResponse);
+		console.log("status: ", fbResponse.status);
+        console.log("type: ", fbResponse.type);
+		console.log("name: ", fbResponse.name);
+		console.log("address line 2: ", fbResponse.address.line2);
+		console.log("otherInfo.expiryDate: ", fbResponse.otherInfo.expiryDate);
+    });
+
 });
 req.end(); req.on('error', function(e) {
   console.error(e);
 });
+
+
 
 
 
