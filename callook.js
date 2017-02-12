@@ -1,4 +1,5 @@
-//This code is from the test branch
+//This is test code to understand how to get and parse json API
+//data from a website 
 
 var https = require('https'); var options = {
   host: 'callook.info',
