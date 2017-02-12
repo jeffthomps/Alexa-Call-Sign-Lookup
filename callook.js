@@ -15,20 +15,19 @@ var req = https.get(options, function(res) {
     });
 
     res.on('end', function(){
-        var fbResponse = JSON.parse(body);
-		//console.log("Got a response: ", fbResponse);
-		console.log("status: ", fbResponse.status);
-        console.log("type: ", fbResponse.type);
-		console.log("name: ", fbResponse.name);
-		console.log("address line 2: ", fbResponse.address.line2);
-		console.log("otherInfo.expiryDate: ", fbResponse.otherInfo.expiryDate);
+        var getResponse = JSON.parse(body);
+		//console.log("Response body: ", getResponse);
+		console.log("status: ", getResponse.status);
+        console.log("current.operClass: ", getResponse.current.operClass);
+		console.log("name: ", getResponse.name);
+		console.log("address line 2: ", getResponse.address.line2);
+		console.log("otherInfo.expiryDate: ", getResponse.otherInfo.expiryDate);
     });
 
 });
 req.end(); req.on('error', function(e) {
   console.error(e);
 });
-
 
 
 
